@@ -10,3 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Plataform {
+  PC
+  XBOX
+  PS5
+}
+
+model Game {
+  id         String      @id @default(uuid())
+  title      String
+  slug       String      @unique
+  plataforms Plataform[]
+  thumbUrl   String?
+}
