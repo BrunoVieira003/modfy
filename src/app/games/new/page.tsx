@@ -1,4 +1,4 @@
-import { createGame } from "@/actions/actions";
+import { createGame } from "@/actions/game";
 import ImageUrlInput from "@/components/forms/image-url-input";
 import TextInput from "@/components/forms/text-input";
 

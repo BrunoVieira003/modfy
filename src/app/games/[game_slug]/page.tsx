@@ -1,4 +1,4 @@
-import { deleteGame } from "@/actions/actions";
+import { deleteGame } from "@/actions/game";
 import ModItem from "@/components/mod-item";
 import ActionButton from "@/components/ui/action-button";
 import LinkButton from "@/components/ui/link-button";
