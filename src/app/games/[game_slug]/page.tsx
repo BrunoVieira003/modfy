@@ -3,11 +3,12 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
 interface propsType{
-    params: {game_slug: string}
+    params: Promise<{game_slug: string}>
 }
 
 export default async function GamePage({params}: propsType){
-    const game = await prisma.game.findUnique({where: {slug: params.game_slug} })
+    const {game_slug} = await params
+    const game = await prisma.game.findUnique({where: {slug: game_slug} })
     const imageUrl = game?.imageUrl || "/images/no-image.svg"
 
     return (
