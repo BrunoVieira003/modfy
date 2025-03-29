@@ -1,4 +1,5 @@
 import ModItem from "@/components/mod-item";
+import LinkButton from "@/components/ui/link-button";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
@@ -21,10 +22,7 @@ export default async function GamePage({params}: propsType){
                 <img src={imageUrl} alt="game_cover" className="object-contain h-32 w-32"/>
                 <div className="flex flex-col gap-3">
                     <h1 className="text-3xl font-medium">{game?.title}</h1>
-                    <div className="flex items-center border rounded-md px-2 py-1 gap-2 w-fit mb-8 cursor-pointer hover:bg-slate-100">
-                        <img src="/icons/edit.svg" className="h-5 w-5" />
-                        <Link href={`/games/${game_slug}/edit`} className="font-medium">Edit</Link>
-                    </div>
+                    <LinkButton href={`/games/${game_slug}/edit`} iconSrc="/icons/edit.svg">Edit</LinkButton>
                 </div>
             </div>
 
