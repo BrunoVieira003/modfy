@@ -34,3 +34,9 @@ export async function updateGame(id: string, data: FormData){
 
     redirect(`/games/${slug}`)
 }
+
+export async function deleteGame(slug: string){
+    await prisma.game.delete({where: {slug}})
+
+    redirect('/games')
+}

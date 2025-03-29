@@ -1,4 +1,6 @@
+import { deleteGame } from "@/actions/actions";
 import ModItem from "@/components/mod-item";
+import ActionButton from "@/components/ui/action-button";
 import LinkButton from "@/components/ui/link-button";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
@@ -11,6 +13,7 @@ export default async function GamePage({params}: propsType){
     const {game_slug} = await params
     const game = await prisma.game.findUnique({where: {slug: game_slug} })
     const imageUrl = game?.imageUrl || "/images/no-image.svg"
+    const deleteAction = deleteGame.bind(null, game_slug)
 
     return (
         <div className="flex flex-col gap-3">
@@ -22,7 +25,10 @@ export default async function GamePage({params}: propsType){
                 <img src={imageUrl} alt="game_cover" className="object-contain h-32 w-32"/>
                 <div className="flex flex-col gap-3">
                     <h1 className="text-3xl font-medium">{game?.title}</h1>
-                    <LinkButton href={`/games/${game_slug}/edit`} iconSrc="/icons/edit.svg">Edit</LinkButton>
+                    <div className="flex gap-2">
+                        <LinkButton href={`/games/${game_slug}/edit`} iconSrc="/icons/edit.svg">Edit</LinkButton>
+                        <ActionButton iconSrc="/icons/delete.svg" action={deleteAction} text="Delete"/>
+                    </div>
                 </div>
             </div>
 
