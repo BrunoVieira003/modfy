@@ -1,4 +1,4 @@
-import { deleteGame } from "@/actions/game";
+import { deleteGame, getGameBySlug } from "@/actions/game";
 import ModItem from "@/components/mod-item";
 import ActionButton from "@/components/ui/action-button";
 import LinkButton from "@/components/ui/link-button";
@@ -11,7 +11,7 @@ interface propsType{
 
 export default async function GamePage({params}: propsType){
     const {game_slug} = await params
-    const game = await prisma.game.findUnique({where: {slug: game_slug} })
+    const game = await getGameBySlug(game_slug)
     const imageUrl = game?.imageUrl || "/images/no-image.svg"
     const deleteAction = deleteGame.bind(null, game_slug)
 

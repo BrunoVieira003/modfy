@@ -1,4 +1,4 @@
-import { createGame, updateGame } from "@/actions/game";
+import { createGame, getGameBySlug, updateGame } from "@/actions/game";
 import ImageUrlInput from "@/components/forms/image-url-input";
 import TextInput from "@/components/forms/text-input";
 import { prisma } from "@/lib/prisma";
@@ -10,7 +10,7 @@ interface propsType{
 
 export default async function NewGame({params}: propsType){
     const {game_slug} = await params
-    const game = await prisma.game.findUnique({where: {slug: game_slug} })
+    const game = await getGameBySlug(game_slug)
     const game_id = game ? game.id : ""
 
     const updateGameAction = updateGame.bind(null, game_id)

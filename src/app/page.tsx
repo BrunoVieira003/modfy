@@ -1,9 +1,9 @@
+import { getGames } from "@/actions/game";
 import GameCard from "@/components/game-card";
-import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 
 export default async function Home() {
-  const games = await prisma.game.findMany()
+  const games = await getGames()
   return (
     <div className="flex flex-col">
       <h1 className="text-5xl text-center mb-10">Welcome to Modfy</h1>
@@ -17,7 +17,7 @@ export default async function Home() {
         </Link>
       </div>
       <div className="flex gap-8 flex-wrap">
-        {games.map(item => <GameCard game={item}/>)}
+        {games.map(item => <GameCard key={item.id} game={item}/>)}
       </div>
     </div>
   );
