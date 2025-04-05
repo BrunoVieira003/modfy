@@ -15,6 +15,8 @@ export default async function GamePage({params}: propsType){
     const imageUrl = game?.imageUrl || "/images/no-image.svg"
     const deleteAction = deleteGame.bind(null, game_slug)
 
+    const mods = await prisma.mod.findMany()
+
     return (
         <div className="flex flex-col gap-3">
             <Link href='/games' className="flex items-center gap-2 text-base font-medium hover:bg-slate-100 rounded-sm p-2 w-fit">
@@ -42,7 +44,7 @@ export default async function GamePage({params}: propsType){
             </div>
 
             <div className="flex flex-col gap-2">
-                {[1,2,3,4,5,6,7,8,9,0,10,11].map(item => <ModItem key={item} href={`/mod/${item}`}/>)}
+                {mods.map(item => <ModItem key={item.id} mod={item}/>)}
             </div>
         </div>
     )
