@@ -13,6 +13,10 @@ export default function Navbar(){
                     <img src="/icons/games.svg" className="h-5 w-5" />
                     <span>Games</span>
                 </Link>
+                <Link href='/mod/new' className="flex items-center gap-2 text-base font-medium hover:bg-slate-100 rounded-sm p-2">
+                    <img src="/icons/plus.svg" className="h-5 w-5" />
+                    <span>Add mod</span>
+                </Link>
             </div>
         </div>
     )

@@ -13,7 +13,7 @@ export default async function NewMod(){
                 <TextInput label="Name" name="name" required/>
                 <ImageUrlInput label="Image URL" name="imageUrl"/>
                 <select name="gameId">
-                    {games.map(item => <option value={item.id}>{item.title}</option>)}
+                    {games.map(item => <option value={item.id} key={item.id}>{item.title}</option>)}
                 </select>
                 <input type="submit" className="bg-slate-100 p-2 w-fit rounded-md cursor-pointer mt-12 hover:bg-slate-300 focus:outline-gray-500" value="Create"/>
             </form>
