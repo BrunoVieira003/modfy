@@ -10,7 +10,7 @@ export default async function NewMod(){
         <div className="border-2 p-8 rounded-lg md:w-4/6 mx-auto">
             <h1 className="text-4xl mb-10">New mod</h1>
             <form className="flex flex-col gap-4 items-stretch" action={createMod}>
-                <TextInput label="Title" name="name" required/>
+                <TextInput label="Name" name="name" required/>
                 <ImageUrlInput label="Image URL" name="imageUrl"/>
                 <select name="gameId">
                     {games.map(item => <option value={item.id}>{item.title}</option>)}

@@ -41,3 +41,23 @@ export async function createMod(data: FormData){
 
     redirect(`/mod/${newMod.id}`)
 }
+
+export async function updateMod(id: string, data: FormData){
+    const name = data.get('name') as string
+    const imageUrl = data.get('imageUrl') as string
+    await prisma.mod.update({
+        where: {id},
+        data: {
+            name,
+            imageUrl
+        }
+    })
+
+    redirect(`/mod/${id}`)
+}
+
+export async function deleteMod(id: string){
+    await prisma.mod.delete({where: {id}})
+
+    redirect('/games')
+}

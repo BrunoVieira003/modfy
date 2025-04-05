@@ -1,4 +1,6 @@
-import { getModById } from "@/actions/mod"
+import { deleteMod, getModById } from "@/actions/mod"
+import ActionButton from "@/components/ui/action-button"
+import LinkButton from "@/components/ui/link-button"
 import Link from "next/link"
 import { ReactNode } from "react"
 
@@ -13,6 +15,8 @@ export default async function ModPage(props: propsType){
     const mod = await getModById(params.mod_id)
     const imageUrl = mod?.imageUrl || 'images/no-image.svg'
 
+    const deleteAction = deleteMod.bind(null, params.mod_id)
+
     return (
         <div>
             <div className="flex items-center gap-3 mb-5">
@@ -20,6 +24,10 @@ export default async function ModPage(props: propsType){
                 <div>
                     <h1 className="text-4xl font-bold">{mod?.name}</h1>
                     <Link href={`/games/${mod?.game.slug}`} className="text-sm text-slate-400 hover:underline">{mod?.game.title}</Link>
+                    <div className="flex gap-2 mt-4">
+                        <LinkButton href={`/mod/${mod?.id}/edit`} iconSrc="/icons/edit.svg">Edit</LinkButton>
+                        <ActionButton action={deleteAction} text="Delete" iconSrc="/icons/delete.svg"/>
+                    </div>
                 </div>
             </div>
             <h2 className="text-xl my-2">by Author name</h2>
