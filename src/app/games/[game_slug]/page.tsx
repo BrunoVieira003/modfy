@@ -1,4 +1,5 @@
 import { deleteGame, getGameBySlug } from "@/actions/game";
+import { getMods } from "@/actions/mod";
 import ModItem from "@/components/mod-item";
 import ActionButton from "@/components/ui/action-button";
 import LinkButton from "@/components/ui/link-button";
@@ -15,7 +16,7 @@ export default async function GamePage({params}: propsType){
     const imageUrl = game?.imageUrl || "/images/no-image.svg"
     const deleteAction = deleteGame.bind(null, game_slug)
 
-    const mods = await prisma.mod.findMany()
+    const mods = await getMods({game_slug})
 
     return (
         <div className="flex flex-col gap-3">

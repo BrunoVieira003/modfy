@@ -3,11 +3,24 @@
 import { prisma } from "@/lib/prisma"
 import { redirect } from "next/navigation"
 
-export async function getMods(){
-    return await prisma.mod.findMany()
+interface FiltersOptions{
+    game_slug: string
 }
 
+export async function getMods(filters?: FiltersOptions){
+    const whereFilters: any = {}
+    if(filters?.game_slug){
+        whereFilters.game = {slug: filters.game_slug}
+    }
+    
+    return await prisma.mod.findMany({
+        where: whereFilters
+    });
+}
+
+
 export async function getModById(id: string){
+
     return await prisma.mod.findUnique({
         where: {
             id
@@ -19,7 +32,7 @@ export async function getModById(id: string){
                     title: true
                 }
             }
-        }
+        },
     })
 }
 
