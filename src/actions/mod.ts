@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from "@/lib/prisma"
+import { ModWithEntries } from "@/types/mod-with-entries"
 import { redirect } from "next/navigation"
 
 interface FiltersOptions{
@@ -19,7 +20,7 @@ export async function getMods(filters?: FiltersOptions){
 }
 
 
-export async function getModById(id: string){
+export async function getModById(id: string): Promise<ModWithEntries | null>{
 
     return await prisma.mod.findUnique({
         where: {
@@ -31,7 +32,8 @@ export async function getModById(id: string){
                     slug: true,
                     title: true
                 }
-            }
+            },
+            entries: true
         },
     })
 }
