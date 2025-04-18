@@ -36,5 +36,5 @@ model ModEntry {
   gameVersion String
   filePath    String
   modId       String
-  mod         Mod    @relation(fields: [modId], references: [id])
+  mod         Mod    @relation(fields: [modId], references: [id], onDelete: Cascade)
 }
