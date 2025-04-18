@@ -15,27 +15,33 @@ export async function createModEntry(modId: string, formData: FormData){
     
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
-    
-      const uploadDir = path.join(process.cwd(), 'uploads');
-      await mkdir(uploadDir, { recursive: true });
-    
-      const filePath = path.join(uploadDir, file.name);
-      await writeFile(filePath, buffer);
 
-    await prisma.modEntry.create({
-        data: {
-            version: modVersion,
-            gameVersion,
-            filePath,
-            mod: {
-                connect: {
-                    id: modId
+      const modsDir = process.env.MODS_DIR
+
+      if(modsDir){
+
+        const uploadDir = path.join(process.cwd(), modsDir);
+        await mkdir(uploadDir, { recursive: true });
+    
+        const filePath = path.join(uploadDir, file.name);
+        await writeFile(filePath, buffer);
+    
+        await prisma.modEntry.create({
+            data: {
+                version: modVersion,
+                gameVersion,
+                filePath: file.name,
+                mod: {
+                    connect: {
+                        id: modId
+                    }
                 }
             }
-        }
-    })
-
-    redirect(`/mod/${modId}`)
+        })
+    
+        redirect(`/mod/${modId}`)
+      }
+    
 }
 
 export async function getModEntryById(entryId: string){

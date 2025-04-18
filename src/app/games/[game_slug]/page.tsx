@@ -24,9 +24,6 @@ export default async function GamePage({params}: propsType){
                 <img src="/icons/return.svg" className="h-5 w-5" />
                 <span>Go back to list</span>
             </Link>
-            <a href="/uploads/GPgp8SUWIAI2fpK.jpg" download>x
-                Download File
-            </a>
             <div className="flex items-center gap-4 flex-wrap">
                 <img src={imageUrl} alt="game_cover" className="object-contain h-32 w-32"/>
                 <div className="flex flex-col gap-3">
