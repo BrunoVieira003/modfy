@@ -1,18 +1,24 @@
-import { ButtonHTMLAttributes } from "react";
+'use client'
 
 interface ActionLinkProps{
     iconSrc?: string,
-    action: string | ((formData: FormData) => void | Promise<void>) | undefined,
-    text: string
+    action: () => Promise<void>,
+    text?: string
 }
 
 export default function ActionButton(props: ActionLinkProps){
     const {iconSrc, text, action} = props
 
+    const handleClick = async () => {
+        await action()
+    }
+
     return (
-        <form className="flex items-center border rounded-md px-2 py-1 gap-2 w-fit cursor-pointer hover:bg-slate-100" action={action}>
+        <button 
+        className="inline-flex items-center border rounded-md px-2 py-1 gap-2 cursor-pointer hover:bg-slate-100 font-medium"
+        onClick={handleClick}>
             {iconSrc && <img src={iconSrc} className="h-5 w-5" />}
-            <input type="submit" value={text} className="font-medium cursor-pointer"></input>
-        </form>
+            {text}
+        </button>
     )
 }
