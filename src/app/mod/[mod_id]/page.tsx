@@ -1,5 +1,6 @@
 import { deleteMod, getModById } from "@/actions/mod"
 import FilesTable from "@/components/files-table"
+import { Tab, TabLink, Tabs } from "@/components/tabs"
 import ActionButton from "@/components/ui/action-button"
 import LinkButton from "@/components/ui/link-button"
 import Link from "next/link"
@@ -30,10 +31,20 @@ export default async function ModPage(props: propsType){
                 </div>
             </div>
             <h2 className="text-xl my-2">by Author name</h2>
-            <a href="#files" className="border-b border-b-black font-bold text-sm">Go to files</a>
-            <p className="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ipsum ut fuga saepe, minima incidunt doloribus corporis facere expedita debitis unde, nisi eveniet illum libero accusantium! Perferendis cupiditate quia dolore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, a non. Quod, ipsa soluta. Eveniet magnam sit voluptate quas illum animi minima architecto aliquid, vel exercitationem, tempore alias nemo iste. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium aspernatur quae recusandae, rem perspiciatis, in ipsam quo architecto totam assumenda cumque ex reiciendis nobis nesciunt facilis provident unde fugit! Hic!</p>
-            <h1 className="text-xl my-3" id="files">Files</h1>
-            {mod?.entries && <FilesTable files={mod.entries}/>}
+
+            <Tabs defaultTab="overview">
+                <div className="flex gap-4">
+                    <TabLink tabRef="overview">Overview</TabLink>
+                    <TabLink tabRef="files">Files</TabLink>
+                </div>
+                <Tab tab="overview">
+                    <p className="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ipsum ut fuga saepe, minima incidunt doloribus corporis facere expedita debitis unde, nisi eveniet illum libero accusantium! Perferendis cupiditate quia dolore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, a non. Quod, ipsa soluta. Eveniet magnam sit voluptate quas illum animi minima architecto aliquid, vel exercitationem, tempore alias nemo iste. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium aspernatur quae recusandae, rem perspiciatis, in ipsam quo architecto totam assumenda cumque ex reiciendis nobis nesciunt facilis provident unde fugit! Hic!</p>
+                </Tab>
+            <Tab tab="files">
+                <h1 className="text-xl my-3" id="files">Files</h1>
+                {mod?.entries && <FilesTable files={mod.entries}/>}
+            </Tab>
+            </Tabs>
         </div>
     )
 }
