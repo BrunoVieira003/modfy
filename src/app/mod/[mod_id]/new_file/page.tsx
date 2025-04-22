@@ -16,7 +16,7 @@ export default async function NewFile({params}: propsType){
             <form className="flex flex-col gap-4 items-stretch" action={createModEntryAction}>
                 <TextInput label="Mod version" name="modVersion" required/>
                 <TextInput label="Game version" name="gameVersion" required/>
-                <FileInput label="File" name="file"/>
+                <FileInput label="File" name="file" required/>
                 <input type="submit" className="bg-slate-100 p-2 w-fit rounded-md cursor-pointer mt-12 hover:bg-slate-300 focus:outline-gray-500" value="Create"/>
             </form>
         </div>
