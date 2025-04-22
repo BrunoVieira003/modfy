@@ -1,6 +1,7 @@
 import { getModById, updateMod } from "@/actions/mod";
 import ImageUrlInput from "@/components/forms/image-url-input";
 import TextInput from "@/components/forms/text-input";
+import TextareaInput from "@/components/forms/textarea-input";
 
 interface propsType{
     params: Promise<{mod_id: string}>
@@ -19,6 +20,7 @@ export default async function UpdateMod({params}: propsType){
             <form className="flex flex-col gap-4 items-stretch" action={updateModAction}>
                 <TextInput label="Name" name="name" required defaultValue={mod?.name}/>
                 <ImageUrlInput label="Image URL" name="imageUrl" defaultValue={mod?.imageUrl || ""}/>
+                <TextareaInput label="Description" name="description"/>
                 <input type="submit" className="bg-slate-100 p-2 w-fit rounded-md cursor-pointer mt-12 hover:bg-slate-300 focus:outline-gray-500" value="Save changes"/>
             </form>
         </div>

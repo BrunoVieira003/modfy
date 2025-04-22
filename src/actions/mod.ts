@@ -40,12 +40,14 @@ export async function getModById(id: string): Promise<ModWithEntries | null>{
 
 export async function createMod(data: FormData){
     const name = data.get('name') as string
+    const description = data.get('description') as string | null
     const imageUrl = data.get('imageUrl') as string
     const gameId = data.get('gameId') as string
     const newMod = await prisma.mod.create({
         data: {
             name,
             imageUrl,
+            description,
             game: {
                 connect: {
                     id: gameId
@@ -59,12 +61,14 @@ export async function createMod(data: FormData){
 
 export async function updateMod(id: string, data: FormData){
     const name = data.get('name') as string
+    const description = data.get('description') as string | null
     const imageUrl = data.get('imageUrl') as string
     await prisma.mod.update({
         where: {id},
         data: {
             name,
-            imageUrl
+            imageUrl,
+            description
         }
     })
 

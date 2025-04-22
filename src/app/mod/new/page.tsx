@@ -2,6 +2,7 @@ import { getGames } from "@/actions/game";
 import { createMod } from "@/actions/mod";
 import ImageUrlInput from "@/components/forms/image-url-input";
 import TextInput from "@/components/forms/text-input";
+import TextareaInput from "@/components/forms/textarea-input";
 
 export default async function NewMod(){
     const games = await getGames()
@@ -15,6 +16,7 @@ export default async function NewMod(){
                 <select name="gameId">
                     {games.map(item => <option value={item.id} key={item.id}>{item.title}</option>)}
                 </select>
+                <TextareaInput label="Description" name="description"/>
                 <input type="submit" className="bg-slate-100 p-2 w-fit rounded-md cursor-pointer mt-12 hover:bg-slate-300 focus:outline-gray-500" value="Create"/>
             </form>
         </div>
