@@ -14,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-        <body className="font-sans mx-auto max-w-7xl">
+        <body className="font-sans mx-auto w-10/12">
           <Navbar/>
           <div className="px-6 py-4">
             {children}
