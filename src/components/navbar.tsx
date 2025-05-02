@@ -23,16 +23,10 @@ export default async function Navbar(){
                     <span>Add mod</span>
                 </Link>
                 {!loggedUser &&
-                <>
                     <Link href='/login' className="flex items-center gap-2 text-base font-medium hover:bg-slate-100 rounded-sm p-2">
-                        <img src="/icons/plus.svg" className="h-5 w-5" />
+                        <img src="/icons/login.svg" className="h-5 w-5" />
                         <span>Login</span>
                     </Link>
-                    <Link href='/register' className="flex items-center gap-2 text-base font-medium hover:bg-slate-100 rounded-sm p-2">
-                        <img src="/icons/plus.svg" className="h-5 w-5" />
-                        <span>Register</span>
-                    </Link>
-                </>
                 }
                 {loggedUser && <ActionButton action={logout} text="Logout" hideBorder/>}
             </div>

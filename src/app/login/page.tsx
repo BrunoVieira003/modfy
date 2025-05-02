@@ -1,6 +1,7 @@
 import { createUser, login } from "@/actions/user";
 import EmailInput from "@/components/forms/email-input";
 import PasswordInput from "@/components/forms/password-input";
+import Link from "next/link";
 
 export default function Login(){
     return (
@@ -9,6 +10,7 @@ export default function Login(){
             <form className="flex flex-col gap-4 items-stretch" action={login}>
                 <EmailInput label="Email" name="email"/>
                 <PasswordInput label="Password" name="password"/>
+                <Link href="/register" className="underline">Still dont have a account? Create an account now</Link>
                 <input type="submit" className="bg-slate-100 p-2 w-fit rounded-md cursor-pointer hover:bg-slate-300 focus:outline-gray-500" value="Login"/>
             </form>
         </div>
