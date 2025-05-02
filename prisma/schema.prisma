@@ -39,3 +39,9 @@ model ModEntry {
   modId       String
   mod         Mod    @relation(fields: [modId], references: [id], onDelete: Cascade)
 }
+
+model User {
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
+}
