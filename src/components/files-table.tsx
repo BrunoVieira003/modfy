@@ -28,7 +28,7 @@ export default function FilesTable({files}: {files: ModEntry[]}){
                             <DownloadButton href={"/api/download/" + f.id}/>
                         </td>
                         <td className="p-4 text-center">
-                            <ActionButton action={deleteAction} iconSrc="/icons/delete.svg"/>
+                            <ActionButton action={deleteAction} iconSrc="/icons/delete.svg" hideBorder/>
                         </td>
                     </tr>
                 )
